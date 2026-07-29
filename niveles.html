@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecciona tu Nivel - Aprende a Aprender</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        /* Mantenemos tus estilos vivos */
+        .card-nivel:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background-color: #f8f9fa;
+        }
+        /* Aseguramos que el grid sea responsivo */
+        .grid-niveles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>¿Qué vamos a aprender hoy?</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="cursos.html">Mi Panel</a></li>
+                <li><a href="progreso.html">Mi Perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" style="max-width: 900px; margin: auto; padding: 20px; text-align: center;">
+            <h2 style="margin-bottom: 10px;">Elige tu nivel académico</h2>
+            <p style="color: #666; margin-bottom: 40px;">Adaptaremos las explicaciones y los retos a tu etapa actual.</p>
+
+            <div class="grid-niveles">
+                
+                <div class="card-nivel" onclick="seleccionarNivel('primaria')" style="cursor: pointer; padding: 30px; border: 2px solid #1abc9c; border-radius: 20px; transition: transform 0.3s, box-shadow 0.3s;">
+                    <div style="font-size: 4rem; margin-bottom: 15px;">🎒</div>
+                    <h3 style="color: #1abc9c;">Primaria</h3>
+                    <p style="font-size: 0.9rem; color: #555;">Bases sólidas: Matemáticas sencillas, lectura y el mundo animal.</p>
+                </div>
+
+                <div class="card-nivel" onclick="seleccionarNivel('secundaria')" style="cursor: pointer; padding: 30px; border: 2px solid #3498db; border-radius: 20px; transition: transform 0.3s, box-shadow 0.3s;">
+                    <div style="font-size: 4rem; margin-bottom: 15px;">📐</div>
+                    <h3 style="color: #3498db;">Secundaria</h3>
+                    <p style="font-size: 0.9rem; color: #555;">Desafíos reales: Álgebra, ciencias y expresión escrita avanzada.</p>
+                </div>
+
+                <div class="card-nivel" onclick="seleccionarNivel('bachillerato')" style="cursor: pointer; padding: 30px; border: 2px solid #9b59b6; border-radius: 20px; transition: transform 0.3s, box-shadow 0.3s;">
+                    <div style="font-size: 4rem; margin-bottom: 15px;">🏛️</div>
+                    <h3 style="color: #9b59b6;">Bachillerato / U</h3>
+                    <p style="font-size: 0.9rem; color: #555;">Nivel Pro: Cálculo, programación, autonomía y pensamiento crítico.</p>
+                </div>
+
+            </div>
+
+            <div style="margin-top: 50px; padding: 20px; background: #fff9db; border-radius: 10px; border: 1px dashed #f59f00;">
+                <p><strong>💡 Recuerda:</strong> Aprender a tu ritmo es la clave para no estresarte. ¡Tú tienes el control!</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        function seleccionarNivel(nivel) {
+            // Guardamos el nivel en el navegador
+            localStorage.setItem("nivelUsuario", nivel);
+            
+            // Verificamos si ya hizo el test
+            const estilo = localStorage.getItem("estiloDetectado");
+            
+            if (!estilo) {
+                alert("Nivel seleccionado. Ahora, realicemos el test para personalizar tus materiales.");
+                window.location.href = "test.html";
+            } else {
+                window.location.href = "material.html";
+            }
+        }
+    </script>
+</body>
+</html>

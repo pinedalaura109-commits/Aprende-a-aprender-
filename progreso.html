@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Perfil Inteligente - Aprende a Aprender</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <h1>Tu Perfil de Aprendizaje</h1>
+        <nav>
+            <ul>
+                <li><a href="cursos.html">Volver al Panel</a></li>
+                <li><a href="test.html">Repetir Test</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card" style="max-width: 650px; margin: auto; text-align: left;">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 5px;">📊 Tu Perfil de Aprendizaje</h2>
+            <p style="text-align: center; color: var(--text-muted, #555); margin-bottom: 25px;">No encajas en una sola caja: este es tu desglose real y combinado.</p>
+
+            <!-- 📈 BARRAS DE PORCENTAJE (GRÁFICO MENTAL) -->
+            <div style="margin-bottom: 25px;">
+                <label id="label-Visual" style="font-weight: bold; display: block; margin-bottom: 5px;">Visual: 0%</label>
+                <div style="background: #eee; border-radius: 20px; margin-bottom: 12px; overflow: hidden;">
+                    <div id="bar-Visual" style="background: #1abc9c; width: 0%; height: 22px; border-radius: 20px; transition: width 1.2s ease-in-out;"></div>
+                </div>
+
+                <label id="label-Auditivo" style="font-weight: bold; display: block; margin-bottom: 5px;">Auditivo: 0%</label>
+                <div style="background: #eee; border-radius: 20px; margin-bottom: 12px; overflow: hidden;">
+                    <div id="bar-Auditivo" style="background: #3498db; width: 0%; height: 22px; border-radius: 20px; transition: width 1.2s ease-in-out;"></div>
+                </div>
+
+                <label id="label-Kinestesico" style="font-weight: bold; display: block; margin-bottom: 5px;">Kinestésico (Práctico): 0%</label>
+                <div style="background: #eee; border-radius: 20px; margin-bottom: 12px; overflow: hidden;">
+                    <div id="bar-Kinestesico" style="background: #e67e22; width: 0%; height: 22px; border-radius: 20px; transition: width 1.2s ease-in-out;"></div>
+                </div>
+
+                <label id="label-Lectura" style="font-weight: bold; display: block; margin-bottom: 5px;">Lectura / Escritura: 0%</label>
+                <div style="background: #eee; border-radius: 20px; margin-bottom: 12px; overflow: hidden;">
+                    <div id="bar-Lectura" style="background: #9b59b6; width: 0%; height: 22px; border-radius: 20px; transition: width 1.2s ease-in-out;"></div>
+                </div>
+            </div>
+
+            <!-- 🎯 ESTRATEGIA COMBINADA Y RUTINA AUTOMÁTICA -->
+            <div id="contenedor-estrategia" style="border-top: 2px solid #eee; padding-top: 20px;">
+                <p id="res-enfoque" style="font-size: 1.05rem; color: var(--primary); font-weight: bold; margin-bottom: 15px;">
+                    Analizando combinación de estilos...
+                </p>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 18px; border-radius: 8px; margin-bottom: 20px;">
+                    <h3 style="margin-top: 0; color: #1e293b; font-size: 1.1rem;">🧩 Tu rutina de estudio ideal:</h3>
+                    <ul id="lista-rutina" style="margin: 0; padding-left: 20px; color: #475569; line-height: 1.6;">
+                        <li>Calculando pasos personalizados...</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f0fdf4; border-left: 5px solid #16a34a; padding: 15px; border-radius: 8px;">
+                    <p style="margin: 0; color: #166534; font-size: 0.95rem; font-weight: 500;" id="res-consejo">
+                        💡 Consejo pro: Adaptando técnica según tus mayores porcentajes...
+                    </p>
+                </div>
+
+                <button onclick="window.location.href='niveles.html'" style="margin-top: 25px; width: 100%; background: var(--secondary, #1abc9c);">Explorar mis Materiales</button>
+            </div>
+
+            <!-- 🚀 BOTÓN DE ACCIÓN DIRECTA AL TEMPORIZADOR (AL FINAL) -->
+            <div style="margin-top: 20px; border-top: 2px solid #eee; padding-top: 20px;">
+                <button onclick="window.location.href='sesion.html'" style="background: var(--primary, #2c3e50); color: white; padding: 15px 30px; font-size: 1.1rem; border-radius: 8px; width: 100%; font-weight: bold; border: none; cursor: pointer; transition: background 0.2s;">
+                    👉 Iniciar sesión de estudio
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        window.onload = function() {
+            const porcentajes = JSON.parse(localStorage.getItem("porcentajesPerfil"));
+
+            if (porcentajes) {
+                // 1. Pintar barras y porcentajes reales
+                for (let estilo in porcentajes) {
+                    const porc = porcentajes[estilo];
+                    const barra = document.getElementById(`bar-${estilo}`);
+                    const etiqueta = document.getElementById(`label-${estilo}`);
+
+                    if (barra && etiqueta) {
+                        barra.style.width = porc + "%";
+                        let nombreBonito = estilo === 'Kinestesico' ? 'Kinestésico (Práctico)' : (estilo === 'Lectura' ? 'Lectura / Escritura' : estilo);
+                        etiqueta.innerText = `${nombreBonito}: ${porc}%`;
+                    }
+                }
+
+                // 2. Encontrar los dos estilos dominantes para armar la mezcla inteligente
+                let estilosOrdenados = Object.keys(porcentajes).sort((a, b) => porcentajes[b] - porcentajes[a]);
+                let base = estilosOrdenados[0];
+                let complemento = estilosOrdenados[1];
+
+                // 3. Generar la estrategia combinada y rutina automática basada en la mezcla
+                let enfoqueTexto = `“Tu estilo es mixto: ${porcentajes[base]}% ${base.toLowerCase()}, ${porcentajes[complemento]}% ${complemento.toLowerCase()}. Tu base es ${base.toLowerCase()} con apoyo de ${complemento.toLowerCase()}.”`;
+                
+                let rutinaHTML = "";
+                let consejoTexto = "";
+
+                if (base === "Visual" || complemento === "Visual") {
+                    rutinaHTML += "<li><strong>Paso 1:</strong> Mira un resumen en esquema o mapa mental (10 min)</li>";
+                }
+                if (base === "Kinestesico" || complemento === "Kinestesico") {
+                    rutinaHTML += "<li><strong>Paso 2:</strong> Haz 3 ejercicios prácticos o simulación (15 min)</li>";
+                } else if (base === "Lectura" || complemento === "Lectura") {
+                    rutinaHTML += "<li><strong>Paso 2:</strong> Analiza y subraya textos clave de tus apuntes (15 min)</li>";
+                }
+                if (base === "Auditivo" || complemento === "Auditivo") {
+                    rutinaHTML += "<li><strong>Paso 3:</strong> Explica en voz alta lo aprendido a modo de repaso (5 min)</li>";
+                } else {
+                    rutinaHTML += "<li><strong>Paso 3:</strong> Haz una autoevaluación rápida para fijar conocimiento (5 min)</li>";
+                }
+
+                consejoTexto = `“Usa bloques cortos combinando ${base.toLowerCase()} y ${complemento.toLowerCase()} para evitar aburrirte y acelerar tu retención.”`;
+
+                document.getElementById("res-enfoque").innerText = enfoqueTexto;
+                document.getElementById("lista-rutina").innerHTML = rutinaHTML;
+                document.getElementById("res-consejo").innerText = consejoTexto;
+
+            } else {
+                document.getElementById("contenedor-estrategia").innerHTML = `
+                    <p style="text-align: center; color: red; font-weight: bold;">Aún no has completado el test.</p>
+                    <button onclick="window.location.href='test.html'" style="margin-top: 15px; width: 100%;">Hacer el Test Ahora</button>
+                `;
+            }
+        };
+    </script>
+</body>
+</html>

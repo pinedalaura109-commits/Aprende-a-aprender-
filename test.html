@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Estilos - Aprende a Aprender</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Descubre tu Estilo</h1>
+        <nav>
+            <ul>
+                <li><a href="cursos.html">Cancelar Test</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="quiz-container" class="card" style="max-width: 600px; margin: -30px auto 50px;">
+            
+            <div style="background: #eee; height: 8px; border-radius: 10px; margin-bottom: 25px;">
+                <div id="progreso-test" style="background: var(--secondary); width: 0%; height: 100%; border-radius: 10px; transition: width 0.3s;"></div>
+            </div>
+
+            <p id="pregunta" style="font-weight: bold; font-size: 1.3rem; color: var(--primary); min-height: 60px;">
+                Cargando pregunta...
+            </p>
+
+            <div id="opciones">
+                </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Verificación de seguridad: si no hay script cargado, avisar
+        window.onload = function() {
+            if (typeof mostrarPregunta === 'function') {
+                mostrarPregunta();
+            } else {
+                console.error("Error: No se encontró la función mostrarPregunta() en script.js");
+                document.getElementById('pregunta').innerText = "Error al cargar el test. Revisa la consola.";
+            }
+        };
+    </script>
+</body>
+</html>

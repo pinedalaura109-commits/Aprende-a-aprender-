@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Aprendizaje - Aprende a Aprender</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        .opcion-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Panel de Aprendizaje</h1>
+        <!-- Aquí mostramos el saludo personalizado al lado del menú -->
+        <div style="margin-top: 5px; font-size: 1rem; font-weight: 500;" id="saludo-usuario"></div>
+        <nav>
+            <ul>
+                <li><a href="progreso.html">Mi Perfil</a></li>
+                <li><a href="#" onclick="cerrarSesion()">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>¡Hola! ¿Qué quieres hacer hoy?</h2>
+            <p>Elige una opción para continuar con tu proceso educativo.</p>
+            
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
+                
+                <div class="opcion-panel" style="background: white; border: 1px solid #e2e8f0; padding: 25px; width: 280px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s;">
+                    <span style="font-size: 3rem;">🎯</span>
+                    <h3>Realizar Test</h3>
+                    <p style="font-size: 0.9rem; color: #64748b;">Descubre si tu aprendizaje es visual, auditivo o kinestésico.</p>
+                    <button onclick="window.location.href='test.html'" style="width: 100%; margin-top: 15px;">Comenzar Test</button>
+                </div>
+
+                <div class="opcion-panel" style="background: white; border: 1px solid #e2e8f0; padding: 25px; width: 280px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s;">
+                    <span style="font-size: 3rem;">📖</span>
+                    <h3>Ver Material</h3>
+                    <p style="font-size: 0.9rem; color: #64748b;">Accede a recursos específicos según tu nivel y estilo.</p>
+                    <button onclick="verificarYRedirigir()" style="width: 100%; margin-top: 15px; background-color: var(--secondary);">Explorar Contenido</button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Cargar el nombre del usuario al iniciar la vista
+        document.addEventListener("DOMContentLoaded", () => {
+            const usuarioGuardado = localStorage.getItem("usuarioActivo");
+            
+            if (usuarioGuardado) {
+                const usuario = JSON.parse(usuarioGuardado);
+                const contenedorSaludo = document.getElementById("saludo-usuario");
+                if (contenedorSaludo) {
+                    contenedorSaludo.innerText = `👋 Hola, ${usuario.nombre}`;
+                }
+            } else {
+                // Si no hay sesión activa, redirigir al login por seguridad
+                alert("Por favor inicia sesión para acceder al panel.");
+                window.location.href = "login.html";
+            }
+        });
+
+        // Función especial para este panel
+        function verificarYRedirigir() {
+            const estilo = localStorage.getItem("estiloDetectado");
+            if (!estilo) {
+                alert("Para darte material personalizado, primero necesitamos conocer tu estilo de aprendizaje. ¡Vamos al test!");
+                window.location.href = "test.html";
+            } else {
+                window.location.href = "niveles.html";
+            }
+        }
+    </script>
+</body>
+</html>

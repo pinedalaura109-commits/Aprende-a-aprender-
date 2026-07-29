@@ -1,0 +1,18 @@
+PROYECTO: Aprende a Aprender
+MÓDULO: Autenticación y Evaluación de Estilos de Aprendizaje
+
+1. HISTORIA DE USUARIO 01: Registro de Usuarios
+- Como: Estudiante del SENA.
+- Quiero: Registrarme en la plataforma ingresando mi nombre, correo y contraseña.
+- Para que: Pueda crear una cuenta personal y guardar los resultados de mi test.
+- Criterios de aceptación: 
+  * Validación de campos obligatorios en el formulario.
+  * Inserción exitosa de los datos en la base de datos MySQL Workbench.
+
+2. HISTORIA DE USUARIO 02: Presentación del Test VARK
+- Como: Usuario registrado.
+- Quiero: Responder las preguntas del test de estilos de aprendizaje.
+- Para que: El sistema determine mi perfil cognitivo (Visual, Auditivo, etc.).
+- Criterios de aceptación:
+  * Visualización dinámica de las preguntas.
+  * Almacenamiento del resultado final asociado al ID del usuario en la base de datos.
