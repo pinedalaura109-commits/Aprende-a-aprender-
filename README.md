@@ -20,9 +20,8 @@ Plataforma web y móvil desarrollada como parte del proceso de formación en An�
 ## 🚀 Instalación y Ejecución Local
 1. Clona este repositorio:
    ```bash
-   git clone [https://github.com/pinedalaura109-commits/Aprende-a-aprender-.git](https://github.com/pinedalaura109-commits/Aprende-a-aprender-.git)
-<<<<<<< HEAD
-=======
+   git clone (https://github.com/pinedalaura109-commits/Aprende-a-aprender-.git)
+
 ## 🌐 Servicios Web (API REST)
 Para la gestión de usuarios, se han implementado los siguientes servicios:
 
@@ -35,6 +34,3 @@ Para la gestión de usuarios, se han implementado los siguientes servicios:
 * **Ruta:** `/api/login`
 * **Método:** `POST`
 * **Descripción:** Valida las credenciales del usuario (email/password) contra la base de datos para iniciar sesión.
-
----
->>>>>>> c8f62a2da8c1f9d1679b16571ff4b84a0a8a7488
