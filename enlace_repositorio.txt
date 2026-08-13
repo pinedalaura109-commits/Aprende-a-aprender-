@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 https://github.com/pinedalaura109-commits/Aprende-a-aprender-.git
+=======
+https://github.com/pinedalaura109-commits/proyecto-adso-codificacion
+>>>>>>> c8f62a2da8c1f9d1679b16571ff4b84a0a8a7488

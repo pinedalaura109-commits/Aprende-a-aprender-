@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "aprende-a-aprender",
   "version": "1.0.0",
   "description": "Proyecto SENA",
@@ -16,4 +17,11 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs"
+=======
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mysql2": "^3.23.2"
+  }
+>>>>>>> c8f62a2da8c1f9d1679b16571ff4b84a0a8a7488
 }

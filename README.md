@@ -21,3 +21,20 @@ Plataforma web y móvil desarrollada como parte del proceso de formación en An�
 1. Clona este repositorio:
    ```bash
    git clone [https://github.com/pinedalaura109-commits/Aprende-a-aprender-.git](https://github.com/pinedalaura109-commits/Aprende-a-aprender-.git)
+<<<<<<< HEAD
+=======
+## 🌐 Servicios Web (API REST)
+Para la gestión de usuarios, se han implementado los siguientes servicios:
+
+### 1. Registro de Usuario
+* **Ruta:** `/api/registro`
+* **Método:** `POST`
+* **Descripción:** Permite el registro de nuevos usuarios en la base de datos MySQL.
+
+### 2. Autenticación de Usuario (Login)
+* **Ruta:** `/api/login`
+* **Método:** `POST`
+* **Descripción:** Valida las credenciales del usuario (email/password) contra la base de datos para iniciar sesión.
+
+---
+>>>>>>> c8f62a2da8c1f9d1679b16571ff4b84a0a8a7488

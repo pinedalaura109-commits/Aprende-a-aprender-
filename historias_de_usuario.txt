@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 HU01: Test de Estilos de Aprendizaje
 Como estudiante del SENA,
 
@@ -25,3 +26,23 @@ Como nuevo estudiante,
 quiero registrarme en la plataforma con mi correo y contraseña, y poder iniciar sesión de forma segura,
 
 para guardar mi progreso personalizado y acceder a mis estadísticas guardadas en la base de datos.
+=======
+PROYECTO: Aprende a Aprender
+MÓDULO: Autenticación y Evaluación de Estilos de Aprendizaje
+
+1. HISTORIA DE USUARIO 01: Registro de Usuarios
+- Como: Estudiante del SENA.
+- Quiero: Registrarme en la plataforma ingresando mi nombre, correo y contraseña.
+- Para que: Pueda crear una cuenta personal y guardar los resultados de mi test.
+- Criterios de aceptación: 
+  * Validación de campos obligatorios en el formulario.
+  * Inserción exitosa de los datos en la base de datos MySQL Workbench.
+
+2. HISTORIA DE USUARIO 02: Presentación del Test VARK
+- Como: Usuario registrado.
+- Quiero: Responder las preguntas del test de estilos de aprendizaje.
+- Para que: El sistema determine mi perfil cognitivo (Visual, Auditivo, etc.).
+- Criterios de aceptación:
+  * Visualización dinámica de las preguntas.
+  * Almacenamiento del resultado final asociado al ID del usuario en la base de datos.
+>>>>>>> c8f62a2da8c1f9d1679b16571ff4b84a0a8a7488
