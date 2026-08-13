@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresa a tu Cuenta - Aprende a Aprender</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <img src="img/logo.png" alt="Logo Aprende a Aprender" class="logo-top">
+        <h1>Ingresa a tu Cuenta</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="registro.html">Registro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card" style="max-width: 400px; margin: auto;">
+            <form id="formLogin">
+                <div style="margin-bottom: 20px; text-align: left;">
+                    <label for="emailLog" style="font-weight: 600; color: var(--text-main);">Correo Electrónico:</label>
+                    <input type="email" id="emailLog" placeholder="ejemplo@correo.com" required>
+                </div>
+
+                <div style="margin-bottom: 25px; text-align: left;">
+                    <label for="passwordLog" style="font-weight: 600; color: var(--text-main);">Contraseña:</label>
+                    <input type="password" id="passwordLog" placeholder="Tu contraseña" required>
+                </div>
+
+                <button type="submit" style="width: 100%; padding: 14px; font-size: 1.1rem;">Entrar a mi Panel 🚀</button>
+            </form>
+            
+            <p style="margin-top: 25px; font-size: 0.95rem; text-align: center; color: var(--text-muted);">
+                ¿No tienes cuenta? <a href="registro.html" style="color: var(--primary); font-weight: bold; text-decoration: none;">Regístrate aquí</a>
+            </p>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('formLogin').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('emailLog').value.trim();
+            const password = document.getElementById('passwordLog').value.trim();
+
+            if (!email || !password) {
+                alert("Completa todos los campos");
+                return;
+            }
+
+            // Llamamos a la función asíncrona conectada al backend
+            await loginUsuario(email, password);
+        });
+    </script>
+</body>
+</html>

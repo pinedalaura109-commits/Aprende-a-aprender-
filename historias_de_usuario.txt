@@ -1,0 +1,27 @@
+HU01: Test de Estilos de Aprendizaje
+Como estudiante del SENA,
+
+quiero realizar un test interactivo de diagnóstico al ingresar a la plataforma,
+
+para conocer cuáles son mis estilos de aprendizaje predominantes (Visual, Auditivo, Kinestésico o Lectura/Escritura) con sus respectivos porcentajes mixtos.
+
+HU02: Checklist Progresiva de Estudio
+Como usuario autenticado,
+
+quiero visualizar una lista de tareas y pasos de estudio que se vayan desbloqueando de forma progresiva,
+
+para seguir una ruta de aprendizaje estructurada y adaptada a mi ritmo.
+
+HU03: Temporizador y Registro de Rachas (Pomodoro)
+Como estudiante enfocado en mejorar mis hábitos,
+
+quiero utilizar un temporizador integrado con control de sesiones y descansos,
+
+para registrar mis minutos totales de estudio y acumular días de racha que motiven mi constancia diaria.
+
+HU04: Gestión de Usuarios y Autenticación
+Como nuevo estudiante,
+
+quiero registrarme en la plataforma con mi correo y contraseña, y poder iniciar sesión de forma segura,
+
+para guardar mi progreso personalizado y acceder a mis estadísticas guardadas en la base de datos.

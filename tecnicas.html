@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Técnicas de Estudio - Aprende a Aprender</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        .seccion-tecnicas {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .seccion-tecnicas h3 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            color: var(--primary, #2c3e50);
+            font-size: 1.2rem;
+        }
+        .grid-tecnicas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+        }
+        .card-tecnica {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #1abc9c;
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+        .card-tecnica:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .card-tecnica h4 {
+            margin: 0 0 8px 0;
+            color: #1e293b;
+            font-size: 1.05rem;
+        }
+        .card-tecnica p {
+            margin: 4px 0;
+            color: #475569;
+            font-size: 0.9rem;
+        }
+        .tag-ideal {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .card-extra {
+            border-left-color: #f59e0b !important;
+            background: #fffbeb !important;
+        }
+        .card-extra .tag-ideal {
+            background: #fef3c7;
+            color: #b45309;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Banco de Técnicas de Estudio</h1>
+        <nav>
+            <ul>
+                <li><a href="cursos.html">Panel Principal</a></li>
+                <li><a href="progreso.html">Mi Perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card" style="max-width: 850px; margin: auto; text-align: left;">
+            <h2 style="text-align: center; color: var(--primary); margin-bottom: 5px;">⚡ Guía Completa de Técnicas al Grano</h2>
+            <p style="text-align: center; color: var(--text-muted, #555); margin-bottom: 30px;">Explora herramientas prácticas clasificadas por estilo y los fundamentos clave para cualquier método:</p>
+
+            <!-- 👁️ VISUAL -->
+            <div class="seccion-tecnicas">
+                <h3>VISUAL</h3>
+                <div class="grid-tecnicas">
+                    <div class="card-tecnica" style="border-left-color: #1abc9c;">
+                        <h4>🔹 Mapas mentales</h4>
+                        <p>Ideas conectadas con colores</p>
+                        <span class="tag-ideal">Ideal para: entender temas complejos</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #1abc9c;">
+                        <h4>🔹 Esquemas visuales</h4>
+                        <p>Organizar en bloques y jerarquías</p>
+                        <span class="tag-ideal">Ideal para: ordenar información</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #1abc9c;">
+                        <h4>🔹 Subrayado inteligente</h4>
+                        <p>Solo palabras clave (no todo)</p>
+                        <span class="tag-ideal">Ideal para: repasar rápido</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #1abc9c;">
+                        <h4>🔹 Flashcards visuales</h4>
+                        <p>Pregunta + imagen/palabra clave</p>
+                        <span class="tag-ideal">Ideal para: memorizar</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #1abc9c;">
+                        <h4>🔹 Dibujar conceptos</h4>
+                        <p>Convertir ideas en dibujos simples</p>
+                        <span class="tag-ideal">Ideal para: comprender mejor</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🎧 AUDITIVO -->
+            <div class="seccion-tecnicas">
+                <h3>AUDITIVO</h3>
+                <div class="grid-tecnicas">
+                    <div class="card-tecnica" style="border-left-color: #3498db;">
+                        <h4>🔹 Feynman (explicar)</h4>
+                        <p>Explica como si enseñaras</p>
+                        <span class="tag-ideal">Ideal para: entender profundo</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #3498db;">
+                        <h4>🔹 Audios propios</h4>
+                        <p>Grábate y escúchate</p>
+                        <span class="tag-ideal">Ideal para: repasar</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #3498db;">
+                        <h4>🔹 Leer en voz alta</h4>
+                        <p>No solo leer en silencio</p>
+                        <span class="tag-ideal">Ideal para: retener más</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #3498db;">
+                        <h4>🔹 Debate o grupo</h4>
+                        <p>Hablar con otros</p>
+                        <span class="tag-ideal">Ideal para: reforzar ideas</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #3498db;">
+                        <h4>🔹 Podcasts/videos</h4>
+                        <p>Aprender escuchando</p>
+                        <span class="tag-ideal">Ideal para: introducir temas</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ✍️ LECTURA / ESCRITURA -->
+            <div class="seccion-tecnicas">
+                <h3>LECTURA / ESCRITURA</h3>
+                <div class="grid-tecnicas">
+                    <div class="card-tecnica" style="border-left-color: #9b59b6;">
+                        <h4>🔹 Resumir con tus palabras</h4>
+                        <p>No copiar, transformar</p>
+                        <span class="tag-ideal">Ideal para: comprender</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #9b59b6;">
+                        <h4>🔹 Método Cornell</h4>
+                        <p>Notas + preguntas + resumen</p>
+                        <span class="tag-ideal">Ideal para: estudio completo</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #9b59b6;">
+                        <h4>🔹 Listas y bullets</h4>
+                        <p>Información clara y directa</p>
+                        <span class="tag-ideal">Ideal para: organizar</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #9b59b6;">
+                        <h4>🔹 Reescribir apuntes</h4>
+                        <p>Versión más simple</p>
+                        <span class="tag-ideal">Ideal para: fijar memoria</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #9b59b6;">
+                        <h4>🔹 Autoevaluación escrita</h4>
+                        <p>Preguntas y respuestas</p>
+                        <span class="tag-ideal">Ideal para: recordar</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🛠️ KINESTÉSICO -->
+            <div class="seccion-tecnicas">
+                <h3>KINESTÉSICO</h3>
+                <div class="grid-tecnicas">
+                    <div class="card-tecnica" style="border-left-color: #e67e22;">
+                        <h4>🔹 Aprender haciendo</h4>
+                        <p>Practicar inmediatamente</p>
+                        <span class="tag-ideal">Ideal para: retener</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #e67e22;">
+                        <h4>🔹 Ejercicios constantes</h4>
+                        <p>No solo teoría</p>
+                        <span class="tag-ideal">Ideal para: dominar temas</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #e67e22;">
+                        <h4>🔹 Simulación real</h4>
+                        <p>Casos prácticos</p>
+                        <span class="tag-ideal">Ideal para: aplicar</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #e67e22;">
+                        <h4>🔹 Enseñar a otros</h4>
+                        <p>Explicar con acción</p>
+                        <span class="tag-ideal">Ideal para: consolidar</span>
+                    </div>
+                    <div class="card-tecnica" style="border-left-color: #e67e22;">
+                        <h4>🔹 Estudiar en movimiento</h4>
+                        <p>Caminar, moverte</p>
+                        <span class="tag-ideal">Ideal para: concentrarte</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🔥 EXTRA (ESTO ES CLAVE PARA TODOS) -->
+            <div class="seccion-tecnicas">
+                <h3 style="color: #d97706; border-bottom-color: #fde68a;">🔥 EXTRA (CLAVE PARA TODOS)</h3>
+                <div class="grid-tecnicas">
+                    <div class="card-tecnica card-extra">
+                        <h4>🔹 Pomodoro</h4>
+                        <p>25 min estudio / 5 descanso</p>
+                        <span class="tag-ideal">Ideal para: concentración</span>
+                    </div>
+                    <div class="card-tecnica card-extra">
+                        <h4>🔹 Repetición espaciada</h4>
+                        <p>Repasar en días distintos</p>
+                        <span class="tag-ideal">Ideal para: memoria larga</span>
+                    </div>
+                    <div class="card-tecnica card-extra">
+                        <h4>🔹 Recuperación activa</h4>
+                        <p>Recordar sin mirar</p>
+                        <span class="tag-ideal">Ideal para: aprendizaje real</span>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="window.location.href='cursos.html'" style="margin-top: 20px; width: 100%;">Volver al Panel</button>
+        </div>
+    </main>
+
+</body>
+</html>

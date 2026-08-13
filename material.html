@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material de Estudio - Aprende a Aprender</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Recursos Recomendados</h1>
+        <nav>
+            <ul>
+                <li><a href="cursos.html">Volver al Panel</a></li>
+                <li><a href="niveles.html">Cambiar Nivel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card" style="text-align: left; max-width: 800px; margin: -30px auto 50px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                <h2 id="titulo-estilo" style="color: var(--primary); margin-bottom: 5px;">Cargando...</h2>
+                <span id="badge-nivel" style="background: var(--secondary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">-</span>
+            </div>
+            
+            <p id="descripcion-estilo" style="color: var(--text-muted);">Estamos preparando los mejores recursos para tu perfil.</p>
+            
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+
+            <div id="lista-recursos" style="margin-top: 20px;">
+                </div>
+
+            <div id="contenedor-tip" style="background: #eef2ff; padding: 15px; border-radius: 8px; margin-top: 20px; display: none; border-left: 4px solid var(--primary);">
+                <p style="margin: 0;"><strong id="tip-titulo">💡 Tip de estudio:</strong> <span id="tip-texto"></span></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/datos.js"></script> 
+    <script src="js/script.js"></script>
+    <script>
+        // ESTO ES CLAVE: Ejecutamos la carga apenas abra la página
+        window.onload = function() {
+            if (typeof cargarMaterialesPersonalizados === 'function') {
+                cargarMaterialesPersonalizados();
+            } else {
+                console.error("La función cargarMaterialesPersonalizados no está definida en script.js");
+            }
+        };
+    </script>
+</body>
+</html>

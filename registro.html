@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Aprende a Aprender</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <img src="img/logo.png" alt="Logo" class="logo-top">
+        <h1>Crea tu Cuenta</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="login.html">Iniciar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card" style="max-width: 400px; margin: auto;">
+            <form id="formRegistro">
+                <div style="margin-bottom: 15px; text-align: left;">
+                    <label for="nombre" style="font-weight: 600;">Nombre Completo:</label>
+                    <input type="text" id="nombre" placeholder="Tu nombre" required>
+                </div>
+                
+                <div style="margin-bottom: 15px; text-align: left;">
+                    <label for="email" style="font-weight: 600;">Correo Electrónico:</label>
+                    <input type="email" id="email" placeholder="correo@ejemplo.com" required>
+                </div>
+
+                <div style="margin-bottom: 20px; text-align: left;">
+                    <label for="password" style="font-weight: 600;">Contraseña:</label>
+                    <input type="password" id="password" placeholder="Mínimo 6 caracteres" required>
+                </div>
+
+                <button type="submit" style="width: 100%; padding: 14px;">🚀 Crear mi Cuenta</button>
+            </form>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem; text-align: center; color: var(--text-muted);">
+                ¿Ya tienes cuenta? <a href="login.html" style="color: var(--primary); font-weight: bold; text-decoration: none;">Inicia sesión aquí</a>
+            </p>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Manejo del registro conectado de forma asíncrona al backend
+        document.getElementById('formRegistro').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!nombre || !email || !password) {
+                alert("Por favor completa todos los campos.");
+                return;
+            }
+
+            // Llamamos a la función asíncrona definida en script.js
+            await registrarUsuario(nombre, email, password);
+        });
+    </script>
+</body>
+</html>

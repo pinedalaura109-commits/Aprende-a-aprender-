@@ -1,0 +1,17 @@
+$kind: http-request
+name: http://localhost:3000/api/registro
+description: ""
+url: http://localhost:3000/api/registro
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"nombre\": \"Laura Ximena Pineda Castillo\",\r
+
+    \  \"email\": \"laurapineda109@gmail.com\",\r
+
+    \  \"password\": \"241225\"\r
+
+    }"
+order: 4489302066085618

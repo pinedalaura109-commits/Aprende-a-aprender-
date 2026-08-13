@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión Activa - Aprende a Aprender</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        .timer-display {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--primary, #2c3e50);
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .checklist-container {
+            text-align: left;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .checklist-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            padding: 10px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        .checklist-step.bloqueado {
+            opacity: 0.4;
+            background: #f1f5f9;
+            pointer-events: none;
+        }
+        .checklist-step.activo {
+            opacity: 1;
+            background: #ffffff;
+            border: 1px solid var(--secondary, #1abc9c);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .checklist-step.completado {
+            opacity: 0.7;
+            background: #f0fdf4;
+            text-decoration: line-through;
+            color: #166534;
+        }
+        .checklist-step input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--secondary, #1abc9c);
+            cursor: pointer;
+        }
+        .btn-control {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-iniciar { background: var(--secondary, #1abc9c); color: white; }
+        .btn-pausar { background: #e67e22; color: white; }
+        .btn-reiniciar { background: #95a5a6; color: white; }
+    </style>
+</head>
+<body>
+
+    <header id="header-sesion">
+        <h1>Sesión de Estudio Activa</h1>
+        <nav>
+            <ul>
+                <li><a href="progreso.html">Ver Perfil</a></li>
+                <li><a href="cursos.html">Salir al Panel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card" style="max-width: 600px; margin: auto; text-align: center;">
+            
+            <!-- 🧠 BLOQUE PRINCIPAL -->
+            <div id="info-sesion">
+                <h3 id="titulo-modo" style="color: var(--primary); margin-bottom: 5px;">🧠 Tu sesión recomendada</h3>
+                <p id="sub-modo" style="color: var(--text-muted, #555); font-size: 0.95rem;">Estilo: Cargando... | Método: Pomodoro</p>
+            </div>
+
+            <!-- ⏱️ TEMPORIZADOR -->
+            <div class="timer-display" id="timer">25:00</div>
+
+            <div>
+                <button class="btn-control btn-iniciar" id="btn-toggle" onclick="toggleTimer()">Iniciar</button>
+                <button class="btn-control btn-reiniciar" onclick="reiniciarTimer()">Reiniciar</button>
+            </div>
+
+            <!-- ✅ CHECKLIST DINÁMICA Y PROGRESIVA -->
+            <div class="checklist-container">
+                <p style="margin-top: 0; font-weight: bold; color: var(--primary);">👉 “Haz esto ahora” (Paso a paso)</p>
+                <div id="contenedor-checklist">
+                    <!-- Los pasos se inyectan dinámicamente aquí -->
+                </div>
+            </div>
+
+            <!-- Botón de Salida / Siguiente -->
+            <button onclick="window.location.href='cursos.html'" style="width: 100%; background: #34495e;">Volver al Panel Principal</button>
+        </div>
+    </main>
+
+    <script>
+        let segundosRestantes = 25 * 60;
+        let temporizador = null;
+        let estaCorriendo = false;
+        let modoDescanso = false;
+        let pasosTextos = [];
+
+        window.onload = function() {
+            const porcentajes = JSON.parse(localStorage.getItem("porcentajesPerfil"));
+            
+            if (porcentajes) {
+                let estilosOrdenados = Object.keys(porcentajes).sort((a, b) => porcentajes[b] - porcentajes[a]);
+                let base = estilosOrdenados[0];
+                let complemento = estilosOrdenados[1];
+                let porcBase = porcentajes[base];
+                let porcComp = porcentajes[complemento];
+
+                document.getElementById("sub-modo").innerText = `Estilo: ${base} (${porcBase}%) + ${complemento} (${porcComp}%) | Método: Pomodoro`;
+                obtenerPasosSegunEstilo(base, complemento);
+            } else {
+                document.getElementById("sub-modo").innerText = `Estilo: General / Mixto | Método: Pomodoro`;
+                obtenerPasosSegunEstilo("Mixto", "Mixto");
+            }
+            renderizarChecklistProgresiva();
+        };
+
+        function obtenerPasosSegunEstilo(base, complemento) {
+            let combinacion = base + "-" + complemento;
+
+            if (combinacion.includes("Visual") && combinacion.includes("Kinestesico")) {
+                pasosTextos = [
+                    "Ver esquema o video clave",
+                    "Hacer ejercicios guiados",
+                    "Dibujar el proceso paso a paso",
+                    "Explicar lo aprendido en voz alta"
+                ];
+            } else if (combinacion.includes("Auditivo") && combinacion.includes("Lectura")) {
+                pasosTextos = [
+                    "Leer el tema en voz alta",
+                    "Explicar el concepto principal",
+                    "Escribir un resumen con tus palabras",
+                    "Hacer y responder preguntas clave"
+                ];
+            } else if (combinacion.includes("Visual") && combinacion.includes("Auditivo")) {
+                pasosTextos = [
+                    "Ver video explicativo del tema",
+                    "Explicar en voz alta lo entendido",
+                    "Hacer un esquema mental rápido",
+                    "Repasar hablando los puntos clave"
+                ];
+            } else if (base === "Visual") {
+                pasosTextos = [
+                    "Ver un resumen visual (video o esquema) – 5 min",
+                    "Crear tu propio esquema o mapa mental",
+                    "Subrayar SOLO ideas clave",
+                    "Repasar el esquema sin leer todo"
+                ];
+            } else if (base === "Auditivo") {
+                pasosTextos = [
+                    "Leer el tema en voz alta",
+                    "Explicarlo como si enseñaras a alguien",
+                    "Grabar un audio corto de repaso",
+                    "Escucharlo y corregir detalles"
+                ];
+            } else if (base === "Lectura") {
+                pasosTextos = [
+                    "Leer el contenido completo",
+                    "Escribir un resumen con tus palabras",
+                    "Crear 3 preguntas del tema",
+                    "Responder tus propias preguntas sin mirar"
+                ];
+            } else if (base === "Kinestesico") {
+                pasosTextos = [
+                    "Leer lo básico (máx 5 min)",
+                    "Hacer ejercicios o práctica activa",
+                    "Corregir errores del ejercicio",
+                    "Explicar brevemente lo que hiciste"
+                ];
+            } else {
+                pasosTextos = [
+                    "Ver resumen general (5 min)",
+                    "Explicar en voz alta",
+                    "Escribir ideas clave",
+                    "Hacer 1 ejercicio de comprobación"
+                ];
+            }
+        }
+
+        function renderizarChecklistProgresiva() {
+            let html = "";
+            pasosTextos.forEach((texto, index) => {
+                let estadoClase = "bloqueado";
+                let disabledAttr = "disabled";
+                let checkedAttr = "";
+
+                if (index === 0) {
+                    estadoClase = "activo";
+                    disabledAttr = "";
+                }
+
+                html += `
+                    <div class="checklist-step ${estadoClase}" id="paso-${index}">
+                        <input type="checkbox" id="check-${index}" ${disabledAttr} ${checkedAttr} onchange="completarPaso(${index})">
+                        <span><strong>Paso ${index + 1}:</strong> ${texto}</span>
+                    </div>
+                `;
+            });
+            document.getElementById("contenedor-checklist").innerHTML = html;
+        }
+
+        function completarPaso(indexActual) {
+            let checkboxActual = document.getElementById(`check-${indexActual}`);
+            let divActual = document.getElementById(`paso-${indexActual}`);
+
+            if (checkboxActual.checked) {
+                // Marcar actual como completado
+                divActual.classList.remove("activo");
+                divActual.classList.add("completado");
+                checkboxActual.disabled = true;
+
+                // Desbloquear el siguiente paso si existe
+                let indexSiguiente = indexActual + 1;
+                let divSiguiente = document.getElementById(`paso-${indexSiguiente}`);
+                let checkboxSiguiente = document.getElementById(`check-${indexSiguiente}`);
+
+                if (divSiguiente && checkboxSiguiente) {
+                    divSiguiente.classList.remove("bloqueado");
+                    divSiguiente.classList.add("activo");
+                    checkboxSiguiente.disabled = false;
+                } else {
+                    alert("🌟 ¡Excelente! Has completado todos los pasos de esta sesión.");
+                }
+            }
+        }
+
+        function actualizarDisplay() {
+            let minutos = Math.floor(segundosRestantes / 60);
+            let segundos = segundosRestantes % 60;
+            document.getElementById("timer").innerText = 
+                `${minutos < 10 ? '0' : ''}${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
+        }
+
+        function toggleTimer() {
+            const btn = document.getElementById("btn-toggle");
+            if (!estaCorriendo) {
+                estaCorriendo = true;
+                btn.innerText = "Pausar";
+                btn.className = "btn-control btn-pausar";
+                
+                temporizador = setInterval(() => {
+                    if (segundosRestantes > 0) {
+                        segundosRestantes--;
+                        actualizarDisplay();
+                    } else {
+                        clearInterval(temporizador);
+                        manejarFinDeCiclo();
+                    }
+                }, 1000);
+            } else {
+                estaCorriendo = false;
+                btn.innerText = "Reanudar";
+                btn.className = "btn-control btn-iniciar";
+                clearInterval(temporizador);
+            }
+        }
+
+        function reiniciarTimer() {
+            clearInterval(temporizador);
+            estaCorriendo = false;
+            segundosRestantes = modoDescanso ? 5 * 60 : 25 * 60;
+            actualizarDisplay();
+            const btn = document.getElementById("btn-toggle");
+            btn.innerText = "Iniciar";
+            btn.className = "btn-control btn-iniciar";
+            renderizarChecklistProgresiva();
+        }
+
+        function manejarFinDeCiclo() {
+            if (!modoDescanso) {
+                registrarEstudioCompletado();
+                
+                alert("🎉 ¡Buen trabajo! Sesión completada con éxito. Es hora de un descanso.");
+                modoDescanso = true;
+                segundosRestantes = 5 * 60;
+                document.getElementById("titulo-modo").innerText = "☕ Tiempo de Descanso";
+                document.getElementById("sub-modo").innerText = "Relájate 5 minutos antes de la siguiente ronda.";
+                document.getElementById("btn-toggle").innerText = "Iniciar Descanso";
+                document.getElementById("btn-toggle").className = "btn-control btn-iniciar";
+                actualizarDisplay();
+            } else {
+                alert("🔔 ¡Descanso terminado! Listo para la siguiente sesión.");
+                window.location.href = "cursos.html";
+            }
+        }
+
+        function registrarEstudioCompletado() {
+            let sesiones = parseInt(localStorage.getItem("totalSesiones") || "0") + 1;
+            let minutosEstudiados = parseInt(localStorage.getItem("minutosTotales") || "0") + 25;
+            
+            let hoy = new Date().toDateString();
+            let ultimoDia = localStorage.getItem("ultimoDiaEstudio");
+            let racha = parseInt(localStorage.getItem("rachaDias") || "0");
+
+            if (ultimoDia !== hoy) {
+                racha += 1;
+                localStorage.setItem("ultimoDiaEstudio", hoy);
+                localStorage.setItem("rachaDias", racha);
+            }
+
+            localStorage.setItem("totalSesiones", sesiones);
+            localStorage.setItem("minutosTotales", minutosEstudiados);
+        }
+    </script>
+</body>
+</html>

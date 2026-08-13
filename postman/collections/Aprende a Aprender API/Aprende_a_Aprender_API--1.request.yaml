@@ -1,0 +1,14 @@
+$kind: http-request
+name: Aprende_a_Aprender_API.
+description: ""
+url: http://localhost:3000/api/registro
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "nombre": "Laura Pineda",
+      "email": "pinedalaura109@gmail.com",
+      "password": "241225"
+    }
+order: 4368531091320613
